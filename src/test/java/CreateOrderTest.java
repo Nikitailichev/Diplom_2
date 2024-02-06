@@ -36,7 +36,7 @@ public class CreateOrderTest {
         bearerToken = responseCreate.extract().path("accessToken");
         token = bearerToken.substring(7);
 
-        userClient.loginUserRequest(login.from(user));
+        userClient.loginUserRequest(LoginUser.from(user));
     }
 
     @After

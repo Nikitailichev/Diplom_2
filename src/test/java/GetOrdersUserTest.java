@@ -37,7 +37,7 @@ public class GetOrdersUserTest {
         bearerToken = responseCreate.extract().path("accessToken");
         token = bearerToken.substring(7);
 
-        userClient.loginUserRequest(login.from(user));
+        userClient.loginUserRequest(LoginUser.from(user));
 
         ValidatableResponse responseIngredients = getIngredients.getIngredientsRequest();
         Ingredient ingredient = responseIngredients.extract().body().as(Ingredient.class);

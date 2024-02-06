@@ -34,7 +34,7 @@ public class UpdateUserTest {
         bearerToken = responseCreate.extract().path("accessToken");
         token = bearerToken.substring(7);
 
-        userClient.loginUserRequest(login.from(user));
+        userClient.loginUserRequest(LoginUser.from(user));
     }
 
     @After
@@ -85,7 +85,7 @@ public class UpdateUserTest {
         assertEquals("StatusCode is not 200", SC_OK, actualStatusCode);
         assertTrue("User is not login", isUserUpdated);
 
-        ValidatableResponse responseSecondLogin = userClient.loginUserRequest(login.from(user));
+        ValidatableResponse responseSecondLogin = userClient.loginUserRequest(LoginUser.from(user));
         Boolean isUserSecondlogged = responseSecondLogin.extract().path("success");
         assertTrue("User is not login", isUserSecondlogged);
     }

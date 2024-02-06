@@ -45,7 +45,7 @@ public class CreateUserTest {
         assertEquals("StatusCode is not 200", SC_OK, actualStatusCode);
         assertTrue("User is not created", isUserCreated);
 
-        ValidatableResponse responseLogin = userClient.loginUserRequest(login.from(user));
+        ValidatableResponse responseLogin = userClient.loginUserRequest(LoginUser.from(user));
         Boolean isUserlogged = responseLogin.extract().path("success");
         assertTrue("User is not login", isUserlogged);
     }
@@ -60,7 +60,7 @@ public class CreateUserTest {
         token = bearerToken.substring(7);
         assertTrue("User is not created", isUserCreated);
 
-        ValidatableResponse responseLogin = userClient.loginUserRequest(login.from(user));
+        ValidatableResponse responseLogin = userClient.loginUserRequest(LoginUser.from(user));
         Boolean isUserlogged = responseLogin.extract().path("success");
         assertTrue("User is not login", isUserlogged);
 

@@ -40,7 +40,7 @@ public class LoginUserTest {
     @DisplayName("Check to login an existing user")
     @Description("логин под существующим пользователем")
     public void loginExistingUserTest(){
-        ValidatableResponse responseLogin = userClient.loginUserRequest(login.from(user));
+        ValidatableResponse responseLogin = userClient.loginUserRequest(LoginUser.from(user));
         int actualStatusCode = responseLogin.extract().statusCode();
         Boolean isUserlogged = responseLogin.extract().path("success");
         assertEquals("StatusCode is not 200", SC_OK, actualStatusCode);
@@ -52,7 +52,7 @@ public class LoginUserTest {
     @Description("логин с неверным логином")
     public void loginWithInvalidEmailTest(){
         user.setEmail("1234");
-        ValidatableResponse responseLogin = userClient.loginUserRequest(login.from(user));
+        ValidatableResponse responseLogin = userClient.loginUserRequest(LoginUser.from(user));
         int actualStatusCode = responseLogin.extract().statusCode();
         String actualMessage = responseLogin.extract().path("message");
         assertEquals("StatusCode is not 403", SC_UNAUTHORIZED, actualStatusCode);
@@ -64,7 +64,7 @@ public class LoginUserTest {
     @Description("логин с неверным паролем")
     public void loginWithInvalidPasswordTest(){
         user.setPassword("1234");
-        ValidatableResponse responseLogin = userClient.loginUserRequest(login.from(user));
+        ValidatableResponse responseLogin = userClient.loginUserRequest(LoginUser.from(user));
         int actualStatusCode = responseLogin.extract().statusCode();
         String actualMessage = responseLogin.extract().path("message");
         assertEquals("StatusCode is not 403", SC_UNAUTHORIZED, actualStatusCode);
